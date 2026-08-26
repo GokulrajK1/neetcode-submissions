@@ -1,0 +1,20 @@
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        n = len(nums)
+        i = 0
+        j = 1
+        while j < n:
+
+            if nums[i] == nums[j]:
+                j += 1 
+                continue 
+
+            if j >= n:
+                break 
+
+            i += 1 
+            nums[i] = nums[j]
+            j += 1
+
+        return i + 1
+

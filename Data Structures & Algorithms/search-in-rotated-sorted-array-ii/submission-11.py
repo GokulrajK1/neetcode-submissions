@@ -1,0 +1,29 @@
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        lo = 0
+        hi = len(nums) - 1 
+        while lo <= hi:
+            mid = lo + (hi - lo) // 2
+            if nums[mid] == target:
+                return True 
+            if nums[lo] > nums[mid]:
+                if target >= nums[lo] or target < nums[mid]:
+                    hi = mid - 1
+                else:
+                    lo = mid + 1 
+            elif nums[lo] == nums[mid]:
+                left_side = self.search(nums[lo+1:mid], target)
+                right_side = self.search(nums[mid+1:], target)
+                return left_side or right_side
+            else:
+                if target < nums[lo] or target > nums[mid]:
+                    lo = mid + 1 
+                else:
+                    hi = mid - 1
+               
+
+        return False
+
+
+        
+                
